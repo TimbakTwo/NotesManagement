@@ -1,5 +1,5 @@
 
-        function playGif(delay = (1000 * 5000)) {
+        function playGif(delay = Math.floor(Math.random() * 60000)) {
             const gif = document.getElementById('multo');
             gif.style.top = '50vh';
 
