@@ -1,0 +1,93 @@
+.subNav {
+    background: #2D2E32;
+    width: 264px;
+    height: 100vh;
+    position: fixed;
+    display: none;
+    left: 0rem;
+    top: 0rem;
+
+    /*Code in progress (Scrollbar of subnav*/
+    scrollbar-color: black;
+   
+
+    /*Code in progress*/
+
+}
+
+.subNavHeader {
+    height: 91px;
+    width: 264px;
+    background: #2D2E32;
+    position: fixed;
+    z-index: 2;
+}
+
+.subNavHeader .subCategsLabel {
+    color: #8E8EA0;
+    font-family:
+    'Roboto', sans-serif;
+    margin-left: 26px;
+    position: relative;
+    top: 15px;
+    font-size: 13px;
+}
+
+.subNavHeader .showUnshow_nav {
+    color: white;
+    float: right;
+    margin-right: 25px;
+    top: -42px;
+    left: 18px;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.486);
+    width: 45px;
+    height: 40px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.subNavHeader .showUnshow_nav label{
+    position: relative;
+    top: 3px;
+    font-size: 30px;
+    font-family: 'Roboto', sans-serif;
+}
+
+/*Styles for add subject category (In progress) */
+.addCategButton {
+    position: relative;
+    color: white;
+    transform: translateX(50%, -50%);
+    width: 192px;
+    height: 41px;
+    border: 1px solid rgba(255, 255, 255, 0.486);
+    text-align: center;
+    border-radius: 6%;
+    margin: 0;
+    margin-left: 10px;
+    margin-top: 13px;  
+}
+
+.addCategButton label {
+    user-select: none;
+    color: white;
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+    top: 30%
+}
+/* */
+
+
+
+/* 764px;
+
+
+
+
+
+
+
+
+
+

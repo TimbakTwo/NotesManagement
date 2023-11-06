@@ -1,0 +1,78 @@
+.imageSession {
+    margin-bottom: 50px;
+  }
+
+  .imageSessionTitle {
+    font-weight: bold;
+    margin-bottom: 10px;
+    background: white;
+    display: inline-block;
+  }
+
+  .imageContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Adjust the gap between images */
+  }
+
+  .imageContainer img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+    cursor: pointer; /* Add pointer cursor for images */
+  }
+
+  .fullImageContainer {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  }
+
+  .fullImageContainer img {
+    max-width: 80%;
+    max-height: 80%;
+    cursor: pointer;
+  }
+
+  .closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: white;
+  }
+
+  /*button for adding images and title css*/
+  .customFileInput {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .addImgButton {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background-color: #3498db;
+    color: #fff;
+    font-size: 36px;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .addImgButton:hover {
+    background-color: #2980b9;
+  }
+  
