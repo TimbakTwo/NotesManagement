@@ -6,5 +6,8 @@ Password is in the source
 
 (test only no major distributions)
 
+Features that needs to be added
+
 - Needs git version control
 - Cloud saving feature pending
+- room creation feature needed
