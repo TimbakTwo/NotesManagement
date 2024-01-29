@@ -13,3 +13,4 @@ Features that needs to be added
 - room creation feature needed
 - ability to delete notes and images
 - responsive to mobile devices
+- active network connection
