@@ -1,10 +1,6 @@
 
 function addSubjectCategory() {
 
-  // only admin (temporary)
-  alert('only admin of this lecture room can add subject')
-  return;
-
      // Create the outer div
   const popupDiv = document.createElement('div');
   popupDiv.id = 'popup';
@@ -52,6 +48,9 @@ labelElement.textContent = subCategoryName.value;
 
 // Append the label to the new div
 newDiv.appendChild(labelElement);
+// This are the your added categories array list 
+const CATEGORIES = [];
+
 
 // Append the new div to the subCategGroup
 subCategGroup.appendChild(newDiv);
