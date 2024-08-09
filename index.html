@@ -3,16 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Firebase Toggle Button</title>
+    <title>Firebase Toggle Button with Password</title>
     <style>
         #toggleButton {
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
+            display: none; /* Initially hidden */
+        }
+        #passwordSection {
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
+    <div id="passwordSection">
+        <input type="password" id="passwordInput" placeholder="Enter password">
+        <button id="passwordButton">Submit Password</button>
+    </div>
     <button id="toggleButton">Cheese</button>
     <p>Current Value: <span id="binValue">0</span></p>
 
@@ -39,19 +47,38 @@
         const analytics = getAnalytics(app);
         const database = getDatabase(app);
 
-        let binValue = 0;
+        const passwordInput = document.getElementById('passwordInput');
+        const passwordButton = document.getElementById('passwordButton');
         const toggleButton = document.getElementById('toggleButton');
         const binValueSpan = document.getElementById('binValue');
 
-        // Read initial value from Firebase
         const binValueRef = ref(database, 'binValue');
+        const passwordRef = ref(database, 'password');
+
+        // Read initial binValue from Firebase
         onValue(binValueRef, (snapshot) => {
-            binValue = snapshot.val() || 0;
+            const binValue = snapshot.val() || 0;
             binValueSpan.textContent = binValue;
         });
 
+        // Password verification
+        passwordButton.addEventListener('click', async () => {
+            const enteredPassword = passwordInput.value;
+
+            // Retrieve password from Firebase
+            onValue(passwordRef, (snapshot) => {
+                const firebasePassword = snapshot.val();
+
+                if (enteredPassword === firebasePassword) {
+                    toggleButton.style.display = 'inline'; // Show the toggle button
+                } else {
+                    alert('Incorrect password. Try again.');
+                }
+            });
+        });
+
         toggleButton.addEventListener('click', () => {
-            binValue = binValue === 0 ? 1 : 0;
+            const binValue = parseInt(binValueSpan.textContent, 10) === 0 ? 1 : 0;
             binValueSpan.textContent = binValue;
             // Update Firebase value
             set(binValueRef, binValue);
