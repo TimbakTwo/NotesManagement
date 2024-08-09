@@ -2,108 +2,60 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ClassCapture</title>
-    <link rel="stylesheet" href="styles.css">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Toggle Button</title>
     <style>
-
-
-        body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f4f4f4;
-}
-
-.container {
-    text-align: center;
-    border-radius: 10px;
-    background-color: #fff;
-    padding: 30px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    animation: fadeIn 1s ease;
-}
-
-header {
-    margin-bottom: 20px;
-}
-
-h1 {
-    font-size: 2.5em;
-    color: #333;
-    margin: 0;
-}
-
-p {
-    font-size: 1.2em;
-    color: #666;
-    margin: 0;
-}
-
-.input-container {
-    display: flex;
-    justify-content: center;
-}
-
-.input-field {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-right: 10px;
-    width: 250px;
-    transition: all 0.3s ease;
-}
-
-.input-field:focus {
-    border-color: #3498db;
-    box-shadow: 0 0 5px #3498db;
-}
-
-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #3498db;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-button:hover {
-    background-color: #2577a9;
-}
-
+        #toggleButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>ClassCapture</h1>
-            <p>Class Notes Management System</p>
-        </header>
-        <div class="input-container">
-            <input type="text" placeholder="Enter Room/Section Password" class="input-field" id="password">
-            <button onclick="join()">JOIN</button>
-        </div>
-    </div>
+    <button id="toggleButton">Cheese</button>
+    <p>Current Value: <span id="binValue">0</span></p>
 
-    
-// pass script (ignore)
-    <script>
-        function join() {
-            if (document.getElementById('password').value == "TVL-5-aZ2z3P4") {
-                
-                window.location.href = "loading.html";
-            }
-        }
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+        import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-analytics.js";
 
-        //Temp change code here
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDB3QqoZlsIaYiC1JfvRAM3LfBOqPdbi3c",
+            authDomain: "burger-4a3e3.firebaseapp.com",
+            databaseURL: "https://burger-4a3e3-default-rtdb.firebaseio.com",
+            projectId: "burger-4a3e3",
+            storageBucket: "burger-4a3e3.appspot.com",
+            messagingSenderId: "540913803547",
+            appId: "1:540913803547:web:b694a74c7cd65e4943f3be",
+            measurementId: "G-HFB6KCKWM4"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const database = getDatabase(app);
+
+        let binValue = 0;
+        const toggleButton = document.getElementById('toggleButton');
+        const binValueSpan = document.getElementById('binValue');
+
+        // Read initial value from Firebase
+        const binValueRef = ref(database, 'binValue');
+        onValue(binValueRef, (snapshot) => {
+            binValue = snapshot.val() || 0;
+            binValueSpan.textContent = binValue;
+        });
+
+        toggleButton.addEventListener('click', () => {
+            binValue = binValue === 0 ? 1 : 0;
+            binValueSpan.textContent = binValue;
+            // Update Firebase value
+            set(binValueRef, binValue);
+        });
     </script>
-
-    
 </body>
 </html>
